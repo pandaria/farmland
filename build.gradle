@@ -1,0 +1,45 @@
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    /*apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'*/
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    group = 'com.pandaria'
+    version '1.0-SNAPSHOT'
+    buildscript {
+        dependencies {
+
+        }
+    }
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+
+        maven {
+            url 'http://mvnrepository.com/'
+        }
+    }
+
+    ext {
+        springBootVersion = '2.0.6.RELEASE'
+        compileJava.options.encoding = 'UTF-8'
+        compileTestJava.options.encoding = 'UTF-8'
+    }
+
+    eclipse{
+        project {
+            natures 'org.eclipse.wst.common.modulecore.ModuleCoreNature'
+        }
+    }
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+    }
+}
+
