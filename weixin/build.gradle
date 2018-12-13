@@ -10,6 +10,8 @@ dependencies {
 
     compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.7'
     compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
 
     compile project(":toolkits")
     compile project(":gifts-biz")
