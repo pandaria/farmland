@@ -12,7 +12,7 @@ public class FilterConfig {
     public FilterRegistrationBean checkSignatureFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new WeiXinSignatureCheckerFilter());
-        registration.addUrlPatterns("/*");
+        registration.addUrlPatterns("/wx/*");
         registration.setName("WeiXinSignatureCheckerFilter");
         registration.setEnabled(true);
         registration.setOrder(1);

@@ -19,10 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/login")
 public class LoginController {
 
-    @Autowired
-    private LoginService loginService;
+    private LoginService loginService =  new LoginService();
 
-    @RequestMapping(value = "execute", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @RequestMapping(value = "v1", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     @ApiOperation(value = "注册接口", notes = "用户提交注册页面接口")
     public @ResponseBody DefaultResponse<User> register(@RequestBody User user) {
         DefaultResponse<User> response = null;
