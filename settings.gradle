@@ -1,4 +1,5 @@
 rootProject.name = 'farmland'
 include 'weixin'
 include 'toolkits'
+include 'gifts-biz'
 
