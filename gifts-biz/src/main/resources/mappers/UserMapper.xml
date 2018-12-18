@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pandaria.farmland.biz.mapper.UserMapper">
+
+    <select id="query" statementType="PREPARED" resultMap="user">
+        select * from wx_user where id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="queryByWeChatNumber" statementType="PREPARED" resultMap="user">
+        select * from wx_user where wechat_number = #{weChatNumber, jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.pandaria.farmland.biz.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into wx_user(
+        nick_name
+        ,age
+        ,phone_number
+        ,wechat_number
+        ,taobao_number
+        ,naughty_value
+        ,credit_value
+        ,referrer_user_id
+        )
+        values
+        (
+        #{nickName, jdbcType=VARCHAR}
+        ,#{age, jdbcType=INTEGER}
+        ,#{phoneNumber, jdbcType=VARCHAR}
+        ,#{weChatNumber, jdbcType=VARCHAR}
+        ,#{taoBaoNumber, jdbcType=VARCHAR}
+        ,#{naughtyValue, jdbcType=INTEGER}
+        ,#{creditValue, jdbcType=INTEGER}
+        ,#{referrerUserId, jdbcType=INTEGER}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.pandaria.farmland.biz.entity.User">
+        update wx_user set
+        nick_name=#{nickName, jdbcType=VARCHAR}
+        ,age=#{age, jdbcType=INTEGER}
+        ,phone_number=#{phoneNumber, jdbcType=VARCHAR}
+        ,wechat_number=#{weChatNumber, jdbcType=VARCHAR}
+        ,taobao_number=#{taoBaoNumber, jdbcType=VARCHAR}
+        ,naughty_value=#{naughtyValue, jdbcType=INTEGER}
+        ,credit_value=#{creditValue, jdbcType=INTEGER}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <resultMap id="user" type="com.pandaria.farmland.biz.entity.User">
+        <id property="id" column="id"></id>
+        <result property="nickName" column="nick_name"></result>
+        <result property="age" column="age"></result>
+        <result property="phoneNumber" column="phone_number"></result>
+        <result property="weChatNumber" column="wechat_number"></result>
+        <result property="taoBaoNumber" column="taobao_number"></result>
+        <result property="naughtyValue" column="naughty_value"></result>
+        <result property="creditValue" column="credit_value"></result>
+        <result property="referrerUserId" column="referrer_user_id"></result>
+    </resultMap>
+
+</mapper>

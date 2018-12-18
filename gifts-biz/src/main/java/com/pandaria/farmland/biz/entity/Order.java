@@ -1,5 +1,7 @@
 package com.pandaria.farmland.biz.entity;
 
+import com.pandaria.farmland.toolkits.utils.JsonUtil;
+
 public class Order {
 
     private int id;
@@ -50,5 +52,10 @@ public class Order {
 
     public void setProcessImageUrl(String processImageUrl) {
         this.processImageUrl = processImageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return JsonUtil.objectToString(this);
     }
 }

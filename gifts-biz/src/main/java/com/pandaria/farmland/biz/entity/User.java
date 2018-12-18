@@ -1,5 +1,7 @@
 package com.pandaria.farmland.biz.entity;
 
+import com.pandaria.farmland.toolkits.utils.JsonUtil;
+
 public class User {
 
     private int id;
@@ -8,7 +10,7 @@ public class User {
 
     private int age;
 
-    private String contactNumber;
+    private String phoneNumber;
 
     private String weChatNumber;
 
@@ -17,6 +19,8 @@ public class User {
     private int naughtyValue;
 
     private int creditValue;
+
+    private int referrerUserId;
 
     public int getId() {
         return id;
@@ -42,12 +46,12 @@ public class User {
         this.age = age;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getWeChatNumber() {
@@ -80,5 +84,18 @@ public class User {
 
     public void setCreditValue(int creditValue) {
         this.creditValue = creditValue;
+    }
+
+    public int getReferrerUserId() {
+        return referrerUserId;
+    }
+
+    public void setReferrerUserId(int referrerUserId) {
+        this.referrerUserId = referrerUserId;
+    }
+
+    @Override
+    public String toString() {
+        return JsonUtil.objectToString(this);
     }
 }

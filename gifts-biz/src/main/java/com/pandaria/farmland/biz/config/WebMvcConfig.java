@@ -1,4 +1,4 @@
-package com.pandaria.farmland.weixin.config;
+package com.pandaria.farmland.biz.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

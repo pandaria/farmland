@@ -1,5 +1,7 @@
 package com.pandaria.farmland.biz.entity;
 
+import com.pandaria.farmland.toolkits.utils.JsonUtil;
+
 public class Task {
 
     private int id;
@@ -40,5 +42,10 @@ public class Task {
 
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
+    }
+
+    @Override
+    public String toString() {
+        return JsonUtil.objectToString(this);
     }
 }

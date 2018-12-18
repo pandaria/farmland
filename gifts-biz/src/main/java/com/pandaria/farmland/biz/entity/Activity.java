@@ -1,5 +1,7 @@
 package com.pandaria.farmland.biz.entity;
 
+import com.pandaria.farmland.toolkits.utils.JsonUtil;
+
 import java.util.Date;
 
 public class Activity {
@@ -72,5 +74,10 @@ public class Activity {
 
     public void setAvailableOrderTaskNumber(int availableOrderTaskNumber) {
         this.availableOrderTaskNumber = availableOrderTaskNumber;
+    }
+
+    @Override
+    public String toString() {
+        return JsonUtil.objectToString(this);
     }
 }

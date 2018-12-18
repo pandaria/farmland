@@ -1,4 +1,4 @@
-package com.pandaria.farmland.weixin.controller;
+package com.pandaria.farmland.biz.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

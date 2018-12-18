@@ -1,4 +1,4 @@
-package com.pandaria.farmland.weixin.config;
+package com.pandaria.farmland.biz.config;
 
 import com.pandaria.farmland.weixin.component.filter.WeiXinSignatureCheckerFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

@@ -1,4 +1,4 @@
-package com.pandaria.farmland.weixin.config;
+package com.pandaria.farmland.biz.config;
 
 import com.google.common.base.Predicate;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
