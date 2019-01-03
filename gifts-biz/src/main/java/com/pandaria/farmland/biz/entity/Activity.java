@@ -2,23 +2,16 @@ package com.pandaria.farmland.biz.entity;
 
 import com.pandaria.farmland.toolkits.utils.JsonUtil;
 
-import java.util.Date;
-
 public class Activity {
 
     private int id;
-
     private String description;
-
     private Order order;
-
     private String rewardImageUrl;
-
-    private Date startTime;
-
-    private Date endTime;
-
     private int availableOrderTaskNumber;
+    private String startTime;
+    private String endTime;
+    private String addDate;
 
     public int getId() {
         return id;
@@ -52,19 +45,19 @@ public class Activity {
         this.rewardImageUrl = rewardImageUrl;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
@@ -74,6 +67,14 @@ public class Activity {
 
     public void setAvailableOrderTaskNumber(int availableOrderTaskNumber) {
         this.availableOrderTaskNumber = availableOrderTaskNumber;
+    }
+
+    public String getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(String addDate) {
+        this.addDate = addDate;
     }
 
     @Override

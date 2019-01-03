@@ -8,12 +8,12 @@
         ,a.description
         ,a.reward_image_url
         ,a.available_order_task_number
-        ,a.start_time
-        ,a.end_time
-        ,a.add_date
+        ,date_format(a.start_time,'%Y-%m-%d %H:%i:%s')
+        ,date_format(a.end_time,'%Y-%m-%d %H:%i:%s')
+        ,date_format(a.add_date,'%Y-%m-%d %H:%i:%s')
         ,o.id as order_id
         ,o.order_name
-        ,o.description
+        ,o.description as order_description
         ,o.task_number
         ,o.process_image_url
         from
@@ -25,47 +25,55 @@
 
     <insert id="insert" parameterType="Activity" useGeneratedKeys="true" keyProperty="id">
         insert into activity(
-        description
+        id
         ,description
-        ,customer_id
-        ,task_number
-        ,process_image_url
+        ,order_id
+        ,reward_image_url
+        ,available_order_task_number
+        ,start_time
+        ,end_time
+        ,add_date
         )
         values
         (
-        #{activityName, jdbcType=VARCHAR}
+        #{id, jdbcType=INTEGER}
         ,#{description, jdbcType=VARCHAR}
-        ,#{customer.id, jdbcType=INTEGER}
-        ,#{taskNumber, jdbcType=INTEGER}
-        ,#{processImageUrl, jdbcType=VARCHAR}
+        ,#{order.id, jdbcType=INTEGER}
+        ,#{rewardImageUrl, jdbcType=VARCHAR}
+        ,#{availableOrderTaskNumber, jdbcType=INTEGER}
+        ,str_to_date(#{startTime, jdbcType=TIMESTAMP, javaType=String},'%Y-%m-%d %H:%i:%s')
+        ,str_to_date(#{endTime, jdbcType=TIMESTAMP, javaType=String},'%Y-%m-%d %H:%i:%s')
+        ,now()
         )
     </insert>
 
     <update id="update" parameterType="Activity">
         update activity set
-        activity_name=#{activityName, jdbcType=VARCHAR}
-        ,description=#{description, jdbcType=VARCHAR}
-        ,customer_id=#{customer.id, jdbcType=INTEGER}
-        ,task_number=#{taskNumber, jdbcType=INTEGER}
-        ,process_image_url=#{processImageUrl, jdbcType=VARCHAR}
+        description=#{description, jdbcType=VARCHAR}
+        ,order_id=#{order.id, jdbcType=INTEGER}
+        ,reward_image_url=#{reward_image_url, jdbcType=VARCHAR}
+        ,available_order_task_number=#{availableOrderTaskNumber, jdbcType=INTEGER}
+        ,start_time=#{startTime, jdbcType=TIMESTAMP, javaType=String}
+        ,end_time=#{endTime, jdbcType=TIMESTAMP, javaType=String}
         where id = #{id, jdbcType=INTEGER}
     </update>
 
     <resultMap id="activity" type="Activity">
         <id property="id" column="id"></id>
-        <result property="activityName" column="activity_name"></result>
         <result property="description" column="description"></result>
-        <result property="taskNumber" column="task_number"></result>
-        <result property="processImageUrl" column="process_image_url"></result>
-        <association property="customer" javaType="Customer" resultMap="customer"/>
+        <result property="rewardImageUrl" column="reward_image_url"></result>
+        <result property="availableOrderTaskNumber" column="available_order_task_number"></result>
+        <result property="startTime" column="start_time" javaType="String" jdbcType="TIMESTAMP"></result>
+        <result property="endTime" column="end_time" javaType="String" jdbcType="TIMESTAMP"></result>
+        <result property="addDate" column="add_date" javaType="String" jdbcType="TIMESTAMP"></result>
+        <association property="order" javaType="Order" resultMap="order"/>
     </resultMap>
 
-    <resultMap id="customer" type="Customer">
-        <id property="id" column="customer_id"></id>
-        <result property="shopName" column="shop_name"></result>
-        <result property="shopId" column="shop_id"></result>
-        <result property="phoneNumber" column="phone_number"></result>
-        <result property="creditValue" column="credit_value"></result>
+    <resultMap id="order" type="Order">
+        <id property="id" column="order_id"></id>
+        <result property="description" column="order_description"></result>
+        <result property="taskNumber" column="task_number"></result>
+        <result property="processImageUrl" column="process_image_url"></result>
     </resultMap>
 
 

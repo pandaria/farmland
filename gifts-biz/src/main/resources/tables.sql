@@ -30,7 +30,6 @@ drop table merchant_order;
 
 create table merchant_order (
 	id INT not NULL
-	,order_name varchar(15)
     ,description varchar(200)
     ,customer_id int
     ,task_number int
