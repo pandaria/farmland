@@ -12,10 +12,19 @@
         <setting name="logImpl" value="LOG4J"/>
     </settings>
 
+    <typeAliases>
+        <typeAlias type="com.pandaria.farmland.biz.entity.User" alias="User"/>
+        <typeAlias type="com.pandaria.farmland.biz.entity.Customer" alias="Customer"/>
+        <typeAlias type="com.pandaria.farmland.biz.entity.Order" alias="Order"/>
+        <typeAlias type="com.pandaria.farmland.biz.entity.Task" alias="Task"/>
+        <typeAlias type="com.pandaria.farmland.biz.entity.Activity" alias="Activity"/>
+    </typeAliases>
 
     <mappers>
 
         <mapper resource="mappers/UserMapper.xml"/>
+        <mapper resource="mappers/CustomerMapper.xml"/>
+        <mapper resource="mappers/OrderMapper.xml"/>
 
     </mappers>
 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pandaria.farmland.biz.mapper.OrderMapper">
+
+    <select id="query" statementType="PREPARED" resultMap="order">
+        select
+        o.id
+        ,o.order_name
+        ,o.description
+        ,o.task_number
+        ,o.process_image_url
+        ,c.id as customer_id
+        ,c.shop_name
+        ,c.shop_id
+        ,c.phone_number
+        ,c.credit_value
+        from
+        merchant_order o
+        inner join customer c on o.customer_id = c.id
+        where
+        o.id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="queryByOrderName" statementType="PREPARED" resultMap="order">
+        select
+        o.id
+        ,o.order_name
+        ,o.description
+        ,o.task_number
+        ,o.process_image_url
+        ,c.id as customer_id
+        ,c.shop_name
+        ,c.shop_id
+        ,c.phone_number
+        ,c.credit_value
+        from
+        merchant_order o
+        inner join customer c on o.customer_id = c.id
+        where
+        o.order_name = #{orderName, jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+        insert into merchant_order(
+        order_name
+        ,description
+        ,customer_id
+        ,task_number
+        ,process_image_url
+        )
+        values
+        (
+        #{orderName, jdbcType=VARCHAR}
+        ,#{description, jdbcType=VARCHAR}
+        ,#{customer.id, jdbcType=INTEGER}
+        ,#{taskNumber, jdbcType=INTEGER}
+        ,#{processImageUrl, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="update" parameterType="Order">
+        update merchant_order set
+        order_name=#{orderName, jdbcType=VARCHAR}
+        ,description=#{description, jdbcType=VARCHAR}
+        ,customer_id=#{customer.id, jdbcType=INTEGER}
+        ,task_number=#{taskNumber, jdbcType=INTEGER}
+        ,process_image_url=#{processImageUrl, jdbcType=VARCHAR}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <resultMap id="order" type="Order">
+        <id property="id" column="id"></id>
+        <result property="orderName" column="order_name"></result>
+        <result property="description" column="description"></result>
+        <result property="taskNumber" column="task_number"></result>
+        <result property="processImageUrl" column="process_image_url"></result>
+        <association property="customer" javaType="Customer" resultMap="customer"/>
+    </resultMap>
+
+    <resultMap id="customer" type="Customer">
+        <id property="id" column="customer_id"></id>
+        <result property="shopName" column="shop_name"></result>
+        <result property="shopId" column="shop_id"></result>
+        <result property="phoneNumber" column="phone_number"></result>
+        <result property="creditValue" column="credit_value"></result>
+    </resultMap>
+
+
+</mapper>

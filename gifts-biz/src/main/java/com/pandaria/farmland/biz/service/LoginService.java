@@ -1,8 +1,7 @@
 package com.pandaria.farmland.biz.service;
 
-import com.pandaria.farmland.biz.component.SpringUtil;
-import com.pandaria.farmland.biz.component.exception.UserAlreadyExistsException;
-import com.pandaria.farmland.biz.component.exception.UserNotFoundException;
+import com.pandaria.farmland.biz.component.exception.RecordAlreadyExistsException;
+import com.pandaria.farmland.biz.component.exception.RecordNotFoundException;
 import com.pandaria.farmland.biz.entity.User;
 import com.pandaria.farmland.biz.mapper.UserMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -24,13 +23,13 @@ public class LoginService {
         if(userMapper.insert(user) > 0){
             return user;
         } else {
-            throw new UserAlreadyExistsException();
+            throw new RecordAlreadyExistsException();
         }
     }
 
     public User getUserInfo(int id) {
         if (id <= 0) {
-            throw new UserNotFoundException();
+            throw new RecordNotFoundException();
         }
         User user = userMapper.query(id);
         return user;
@@ -38,7 +37,7 @@ public class LoginService {
 
     public User getUserInfo(String weChatNumber) {
         if (StringUtils.isBlank(weChatNumber)) {
-            throw new UserNotFoundException();
+            throw new RecordNotFoundException();
         }
         User user = userMapper.queryByWeChatNumber(weChatNumber);
         return user;
@@ -46,7 +45,7 @@ public class LoginService {
 
     public int updateUserInfo(User user) {
         if (user == null) {
-            throw new UserNotFoundException();
+            throw new RecordNotFoundException();
         }
         int result = userMapper.update(user);
         return result;
