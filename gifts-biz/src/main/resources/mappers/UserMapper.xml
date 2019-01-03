@@ -12,7 +12,8 @@
 
     <insert id="insert" parameterType="com.pandaria.farmland.biz.entity.User" useGeneratedKeys="true" keyProperty="id">
         insert into wx_user(
-        nick_name
+        id
+        ,nick_name
         ,age
         ,phone_number
         ,wechat_number
@@ -23,7 +24,8 @@
         )
         values
         (
-        #{nickName, jdbcType=VARCHAR}
+        #{id, jdbcType=INTEGER}
+        ,#{nickName, jdbcType=VARCHAR}
         ,#{age, jdbcType=INTEGER}
         ,#{phoneNumber, jdbcType=VARCHAR}
         ,#{weChatNumber, jdbcType=VARCHAR}

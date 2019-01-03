@@ -26,7 +26,7 @@ public class OrderController {
         if (order == null) {
             response = new DefaultResponse<Order>(ResponseStatus.FAILURE, null);
         } else {
-            response = new DefaultResponse<>(ResponseStatus.SUCCESS, service.order(order));
+            response = new DefaultResponse<Order>(ResponseStatus.SUCCESS, service.order(order));
         }
         return response;
     }
@@ -50,7 +50,7 @@ public class OrderController {
         if (order != null && service.updateOrderInfo(order) > 0) {
             response = new DefaultResponse<Order>(ResponseStatus.SUCCESS, null);
         } else if (order == null) {
-            response = new DefaultResponse<Order>(ResponseStatus.FAILURE, null);
+            response = new DefaultResponse<Order>(ResponseStatus.FAILURE, order);
         }
         return response;
     }

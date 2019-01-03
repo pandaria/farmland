@@ -6,21 +6,21 @@
         select * from customer where id = #{id, jdbcType=INTEGER}
     </select>
 
-    <select id="queryByShopId" statementType="PREPARED" resultMap="customer">
-        select * from customer where shop_id = #{shopId, jdbcType=VARCHAR}
+    <select id="queryByShopName" statementType="PREPARED" resultMap="customer">
+        select * from customer where shop_name = #{shopName, jdbcType=VARCHAR}
     </select>
 
     <insert id="insert" parameterType="com.pandaria.farmland.biz.entity.Customer" useGeneratedKeys="true" keyProperty="id">
         insert into customer(
-        shop_name
-        ,shop_id
+        id
+        ,shop_name
         ,phone_number
         ,credit_value
         )
         values
         (
-        #{shopName, jdbcType=VARCHAR}
-        ,#{shopId, jdbcType=VARCHAR}
+        #{id, jdbcType=INTEGER}
+        ,#{shopName, jdbcType=VARCHAR}
         ,#{phoneNumber, jdbcType=VARCHAR}
         ,100
         )
@@ -29,7 +29,6 @@
     <update id="update" parameterType="com.pandaria.farmland.biz.entity.Customer">
         update customer set
         shop_name=#{shopName, jdbcType=VARCHAR}
-        ,shop_id=#{shopId, jdbcType=VARCHAR}
         ,phone_number=#{phoneNumber, jdbcType=VARCHAR}
         where id = #{id, jdbcType=INTEGER}
     </update>
@@ -43,7 +42,6 @@
     <resultMap id="customer" type="com.pandaria.farmland.biz.entity.Customer">
         <id property="id" column="id"></id>
         <result property="shopName" column="shop_name"></result>
-        <result property="shopId" column="shop_id"></result>
         <result property="phoneNumber" column="phone_number"></result>
         <result property="creditValue" column="credit_value"></result>
     </resultMap>

@@ -28,19 +28,19 @@ public class LoginController {
         if (user == null) {
             response = new DefaultResponse<User>(ResponseStatus.FAILURE, null);
         } else {
-            response = new DefaultResponse<>(ResponseStatus.SUCCESS, loginService.register(user));
+            response = new DefaultResponse<User>(ResponseStatus.SUCCESS, loginService.register(user));
         }
         return response;
     }
 
-    @RequestMapping(value = "/login/{webChatNumber}/v1", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+    @RequestMapping(value = "/login/{id}/v1", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     @ApiOperation(value = "用户登录接口", notes = "验证用户身份，已注册用户返回用户信息，未注册用户返回空值")
-    public @ResponseBody DefaultResponse<User> queryUserInfo(@PathVariable("webChatNumber") String webChatNumber) {
+    public @ResponseBody DefaultResponse<User> queryUserInfo(@PathVariable("id") int id) {
         DefaultResponse<User> response = null;
-        if (StringUtils.isBlank(webChatNumber)) {
+        if (id < 1) {
             response = new DefaultResponse<User>(ResponseStatus.FAILURE, null);
         } else {
-            response = new DefaultResponse<>(ResponseStatus.SUCCESS, loginService.getUserInfo(webChatNumber));
+            response = new DefaultResponse<User>(ResponseStatus.SUCCESS, loginService.getUserInfo(id));
         }
         return response;
     }

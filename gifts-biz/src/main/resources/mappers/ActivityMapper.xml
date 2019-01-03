@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.pandaria.farmland.biz.mapper.OrderMapper">
+<mapper namespace="com.pandaria.farmland.biz.mapper.ActivityMapper">
 
-    <select id="query" statementType="PREPARED" resultMap="order">
+    <select id="query" statementType="PREPARED" resultMap="activity">
         select
-        o.id
+        a.id
+        ,a.description
+        ,a.reward_image_url
+        ,a.available_order_task_number
+        ,a.start_time
+        ,a.end_time
+        ,a.add_date
+        ,o.id as order_id
+        ,o.order_name
         ,o.description
         ,o.task_number
         ,o.process_image_url
-        ,c.id as customer_id
-        ,c.shop_name
-        ,c.phone_number
-        ,c.credit_value
         from
-        merchant_order o
-        inner join customer c on o.customer_id = c.id
+        activity a
+        inner join merchant_order o on a.order_id = o.id
         where
-        o.id = #{id, jdbcType=INTEGER}
+        a.id = #{id, jdbcType=INTEGER}
     </select>
 
-    <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
-        insert into merchant_order(
-        id
+    <insert id="insert" parameterType="Activity" useGeneratedKeys="true" keyProperty="id">
+        insert into activity(
+        description
         ,description
         ,customer_id
         ,task_number
@@ -29,7 +33,7 @@
         )
         values
         (
-        #{id, jdbcType=INTEGER}
+        #{activityName, jdbcType=VARCHAR}
         ,#{description, jdbcType=VARCHAR}
         ,#{customer.id, jdbcType=INTEGER}
         ,#{taskNumber, jdbcType=INTEGER}
@@ -37,17 +41,19 @@
         )
     </insert>
 
-    <update id="update" parameterType="Order">
-        update merchant_order set
-        description=#{description, jdbcType=VARCHAR}
+    <update id="update" parameterType="Activity">
+        update activity set
+        activity_name=#{activityName, jdbcType=VARCHAR}
+        ,description=#{description, jdbcType=VARCHAR}
         ,customer_id=#{customer.id, jdbcType=INTEGER}
         ,task_number=#{taskNumber, jdbcType=INTEGER}
         ,process_image_url=#{processImageUrl, jdbcType=VARCHAR}
         where id = #{id, jdbcType=INTEGER}
     </update>
 
-    <resultMap id="order" type="Order">
+    <resultMap id="activity" type="Activity">
         <id property="id" column="id"></id>
+        <result property="activityName" column="activity_name"></result>
         <result property="description" column="description"></result>
         <result property="taskNumber" column="task_number"></result>
         <result property="processImageUrl" column="process_image_url"></result>
@@ -57,6 +63,7 @@
     <resultMap id="customer" type="Customer">
         <id property="id" column="customer_id"></id>
         <result property="shopName" column="shop_name"></result>
+        <result property="shopId" column="shop_id"></result>
         <result property="phoneNumber" column="phone_number"></result>
         <result property="creditValue" column="credit_value"></result>
     </resultMap>

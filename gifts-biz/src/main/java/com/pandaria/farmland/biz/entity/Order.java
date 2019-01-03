@@ -6,8 +6,6 @@ public class Order {
 
     private int id;
 
-    private String orderName;
-
     private Customer customer;
 
     private String description;
@@ -54,14 +52,6 @@ public class Order {
 
     public void setProcessImageUrl(String processImageUrl) {
         this.processImageUrl = processImageUrl;
-    }
-
-    public String getOrderName() {
-        return orderName;
-    }
-
-    public void setOrderName(String orderName) {
-        this.orderName = orderName;
     }
 
     @Override

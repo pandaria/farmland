@@ -8,8 +8,6 @@ public class Customer {
 
     private String shopName;
 
-    private String shopId;
-
     private String phoneNumber;
 
     private int creditValue;
@@ -28,14 +26,6 @@ public class Customer {
 
     public void setShopName(String shopName) {
         this.shopName = shopName;
-    }
-
-    public String getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(String shopId) {
-        this.shopId = shopId;
     }
 
     public String getPhoneNumber() {

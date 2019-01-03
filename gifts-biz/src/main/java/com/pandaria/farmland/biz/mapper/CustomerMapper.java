@@ -10,7 +10,7 @@ public interface CustomerMapper {
 
     Customer query(@Param("id") int id);
 
-    Customer queryByShopId(@Param("shopId") String shopId);
+    Customer queryByShopName(@Param("shopName") String shopName);
 
     int insert(Customer user);
 

@@ -10,8 +10,6 @@ public interface OrderMapper {
 
     Order query(@Param("id") int id);
 
-    Order queryByOrderName(@Param("orderName") String orderName);
-
     int insert(Order order);
 
     int update(Order order);

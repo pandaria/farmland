@@ -5,23 +5,22 @@ use test;
 drop table activity;
 
 create table activity (
-	id INT not NULL AUTO_INCREMENT
+	id INT not NULL
     ,description varchar(200)
     ,order_id int
 	,reward_image_url varchar(150)
 	,available_order_task_number int
     ,start_time timestamp
     ,end_time timestamp
-    ,add_date date
+    ,add_date timestamp not null default now()
     ,primary key(id)
 );
 
 drop table customer;
 
 create table customer (
-	id INT not NULL AUTO_INCREMENT
+	id INT not NULL
     ,shop_name varchar(10)
-    ,shop_id int
     ,phone_number char(11)
 	,credit_value int
     ,primary key(id)
@@ -30,7 +29,8 @@ create table customer (
 drop table merchant_order;
 
 create table merchant_order (
-	id INT not NULL AUTO_INCREMENT
+	id INT not NULL
+	,order_name varchar(15)
     ,description varchar(200)
     ,customer_id int
     ,task_number int
@@ -41,7 +41,7 @@ create table merchant_order (
 drop table task;
 
 create table task (
-	id INT not NULL AUTO_INCREMENT
+	id INT not NULL
     ,user_id int
     ,activity_id int
 	,status_code int
@@ -51,7 +51,7 @@ create table task (
 drop table wx_user;
 
 create table wx_user (
-	id INT not NULL AUTO_INCREMENT
+	id INT not NULL
     ,nick_name varchar(30)
 	,age int
 	,phone_number char(11)

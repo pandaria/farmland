@@ -28,7 +28,7 @@ public class CustomerController {
         if (customer == null) {
             response = new DefaultResponse<Customer>(ResponseStatus.FAILURE, null);
         } else {
-            response = new DefaultResponse<>(ResponseStatus.SUCCESS, service.register(customer));
+            response = new DefaultResponse<Customer>(ResponseStatus.SUCCESS, service.register(customer));
         }
         return response;
     }
