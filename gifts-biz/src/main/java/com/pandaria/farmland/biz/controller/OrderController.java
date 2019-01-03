@@ -48,9 +48,9 @@ public class OrderController {
     public @ResponseBody DefaultResponse<Order> updateOrderInfo(@RequestBody Order order) {
         DefaultResponse<Order> response = null;
         if (order != null && service.updateOrderInfo(order) > 0) {
-            response = new DefaultResponse<Order>(ResponseStatus.SUCCESS, null);
+            response = new DefaultResponse<Order>(ResponseStatus.SUCCESS, order);
         } else if (order == null) {
-            response = new DefaultResponse<Order>(ResponseStatus.FAILURE, order);
+            response = new DefaultResponse<Order>(ResponseStatus.FAILURE, null);
         }
         return response;
     }
