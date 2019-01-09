@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pandaria.farmland.biz.mapper.TaskMapper">
+
+    <select id="query" statementType="PREPARED" resultMap="task">
+        select
+        id
+        ,user_id
+        ,activity_id
+        ,status_code
+        from
+        task
+        where
+        id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="query0" statementType="PREPARED" resultMap="task">
+        select
+        t.id
+        ,c.id
+        ,a.id
+        from
+        task t
+        inner join customer c on t.user_id = c.id
+        inner join activity a on t.activity_id = a.id
+        where
+        t.id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="Task" useGeneratedKeys="true" keyProperty="id">
+        insert into task(
+        id
+        ,user_id
+        ,activity_id
+        ,status_code
+        )
+        values
+        (
+        #{id, jdbcType=INTEGER}
+        ,#{user.id, jdbcType=INTEGER}
+        ,#{activity.id, jdbcType=INTEGER}
+        ,#{statusCode, jdbcType=INTEGER}
+        )
+    </insert>
+
+    <update id="update" parameterType="Task">
+        update task set
+        user_id=#{user.id, jdbcType=INTEGER}
+        ,activity_id=#{activity.id, jdbcType=INTEGER}
+        ,status_code=#{statusCode, jdbcType=INTEGER}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <update id="updateStatusCode" parameterType="Task">
+        update task set
+        status_code=#{statusCode, jdbcType=INTEGER}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <resultMap id="task" type="Task">
+        <id property="id" column="id"></id>
+        <result property="statusCode" column="status_code"></result>
+        <association property="user" javaType="User" resultMap="user"/>
+        <association property="activity" javaType="Activity" resultMap="order"/>
+    </resultMap>
+
+    <resultMap id="user" type="User">
+        <id property="id" column="user_id"></id>
+    </resultMap>
+
+    <resultMap id="activity" type="Activity">
+        <id property="id" column="activity_id"></id>
+    </resultMap>
+
+
+</mapper>

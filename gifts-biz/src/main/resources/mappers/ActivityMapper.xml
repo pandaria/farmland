@@ -8,9 +8,9 @@
         ,a.description
         ,a.reward_image_url
         ,a.available_order_task_number
-        ,date_format(a.start_time,'%Y-%m-%d %H:%i:%s')
-        ,date_format(a.end_time,'%Y-%m-%d %H:%i:%s')
-        ,date_format(a.add_date,'%Y-%m-%d %H:%i:%s')
+        ,date_format(a.start_time,'%Y-%m-%d %H:%i:%s') as start_time
+        ,date_format(a.end_time,'%Y-%m-%d %H:%i:%s') as end_time
+        ,date_format(a.add_date,'%Y-%m-%d %H:%i:%s') as add_date
         ,o.id as order_id
         ,o.order_name
         ,o.description as order_description
@@ -51,7 +51,7 @@
         update activity set
         description=#{description, jdbcType=VARCHAR}
         ,order_id=#{order.id, jdbcType=INTEGER}
-        ,reward_image_url=#{reward_image_url, jdbcType=VARCHAR}
+        ,reward_image_url=#{rewardImageUrl, jdbcType=VARCHAR}
         ,available_order_task_number=#{availableOrderTaskNumber, jdbcType=INTEGER}
         ,start_time=#{startTime, jdbcType=TIMESTAMP, javaType=String}
         ,end_time=#{endTime, jdbcType=TIMESTAMP, javaType=String}
