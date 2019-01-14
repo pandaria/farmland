@@ -1,3 +1,16 @@
+apply plugin: 'war'
+war {
+    enabled = true
+    baseName = "gift"
+    version = versionNumber
+    //archiveName = "${baseName}.${extension}"
+    //webXml = file('src/someWeb.xml')
+    dependencies {
+        //TODO when local ,please comment
+        providedRuntime "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
+        exclude 'javax.servlet:javax.servlet-api:3.1.0'
+    }
+}
 
 dependencies {
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'

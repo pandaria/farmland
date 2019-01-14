@@ -29,6 +29,11 @@ allprojects {
         springBootVersion = '2.0.6.RELEASE'
         compileJava.options.encoding = 'UTF-8'
         compileTestJava.options.encoding = 'UTF-8'
+        if (project.hasProperty('versionNumber')) {
+            versionNumber = project['versionNumber']
+        } else {
+            versionNumber = "1.0"
+        }
     }
 
     eclipse{
@@ -44,6 +49,10 @@ allprojects {
         compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
         testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
         compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
+    }
+
+    wrapper {
+        gradleVersion = '5.0'
     }
 }
 
